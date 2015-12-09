@@ -43,6 +43,21 @@ public class MapsActivity extends FragmentActivity {
         setUpMapIfNeeded();
     }
 
+    void visitParis() {
+        mMap.clear();
+        TextView tv = (TextView)interfaceView.findViewById(R.id.textView);
+        tv.setText("Welcome to Paris!");
+        createBerlinMarker();
+    }
+
+    Marker createBerlinMarker() {
+        berlin = mMap.addMarker( new MarkerOptions()
+                .position(new LatLng(1,1))
+                .title("Berlin")
+                .snippet("The city of eating sausages and potatoes!"));
+        return berlin;
+    }
+
     /**
      * Sets up the map if it is possible to do so (i.e., the Google Play services APK is correctly
      * installed) and the map has not already been instantiated.. This will ensure that we only ever
@@ -96,10 +111,6 @@ public class MapsActivity extends FragmentActivity {
                         .icon(BitmapDescriptorFactory.fromResource(R.drawable.cast_ic_notification_0))
         );
         // a whole bunch of other city marker creations
-        berlin = mMap.addMarker( new MarkerOptions()
-                .position(new LatLng(1,1))
-                .title("Berlin")
-                .snippet("The city of eating sausages and potatoes!"));
         tokyo = mMap.addMarker( new MarkerOptions()
                 .position(new LatLng(1,1))
                 .title("Tokyo")
@@ -111,11 +122,9 @@ public class MapsActivity extends FragmentActivity {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
                     if (marker.equals(paris)) {
-                        Toast.makeText(MapsActivity.this, "Paris was correct! You found a clue!", Toast.LENGTH_SHORT).show();
-                        paris.setSnippet("The next clue is the city that is named TOKYO.");
-                        correctCity = tokyo;
-                    } else {
-                        marker.setSnippet("You just wasted a plane ticket and found no clues.");
+                        visitParis();
+                    }
+                    if (marker.equals(berlin)) {
                     }
                     return false;
                 }
