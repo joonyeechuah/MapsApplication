@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,6 +23,9 @@ public class MapsActivity extends FragmentActivity {
     Marker paris;
     Marker berlin;
     Marker tokyo;
+
+    View interfaceView;
+
     // a bunch of marker variables with cities in your game
 
     GoogleMap mMap; // Might be null if Google Play services APK is not available.
@@ -65,10 +69,16 @@ public class MapsActivity extends FragmentActivity {
                 setUpMap();
             }
         }
+
+        if (interfaceView == null) {
+            interfaceView = getSupportFragmentManager().findFragmentById(R.id.interact).getView();
+        }
     }
 
     public void onTestButtonClick(View view) {
         Toast.makeText(this, "Test button click", Toast.LENGTH_SHORT).show();
+        TextView tv = (TextView)interfaceView.findViewById(R.id.textView);
+        tv.setText("NBLAHBLAKSJFLJKDF");
     }
 
     /**
