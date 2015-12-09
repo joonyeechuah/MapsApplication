@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -23,7 +24,7 @@ public class MapsActivity extends FragmentActivity {
     Marker tokyo;
     // a bunch of marker variables with cities in your game
 
-    private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+    GoogleMap mMap; // Might be null if Google Play services APK is not available.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +65,10 @@ public class MapsActivity extends FragmentActivity {
                 setUpMap();
             }
         }
+    }
+
+    public void onTestButtonClick(View view) {
+        Toast.makeText(this, "Test button click", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -112,7 +117,7 @@ public class MapsActivity extends FragmentActivity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             // Inflate the layout for this fragment
-            return inflater.inflate(R.layout.interactive_fragment, container, false);
+          return inflater.inflate(R.layout.interactive_fragment, container, false);
         }
     }
 }
